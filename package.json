@@ -6,7 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["canvas"],
+  "keywords": [
+    "canvas"
+  ],
   "author": "la-testcoder <luisarmando.murillobaltodano@gmail.com> (https://github.com/LuisArmando-TestCoder)",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "14.3.1"
+  }
 }
