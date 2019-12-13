@@ -4,6 +4,7 @@
   "description": "canvas -> easier",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint lib/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -12,6 +13,8 @@
   "author": "la-testcoder <luisarmando.murillobaltodano@gmail.com> (https://github.com/LuisArmando-TestCoder)",
   "license": "MIT",
   "devDependencies": {
-    "standard": "14.3.1"
+    "eslint": "6.7.2",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-plugin-import": "2.19.1"
   }
 }
