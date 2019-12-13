@@ -1,7 +1,7 @@
 {
   "name": "canvas-preset",
   "version": "1.0.0",
-  "description": "makes canvas workflow easier",
+  "description": "canvas -> easier",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
