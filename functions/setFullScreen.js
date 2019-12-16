@@ -1,22 +1,28 @@
 module.exports = function setFullScreen({
     element,
-    trigger,
-    callback
+    triggerBy = 'click',
+    callback,
+    wrapper
 }) {
-    // setFullScreen(btn, 'click');
+
     const {
         documentElement: doc
     } = document;
-    const rfs = doc.requestFullScreen ||
-        doc.webkitRequestFullScreen ||
-        doc.mozRequestFullScreen ||
-        doc.msRequestFullScreen;
+
+    const wrapperElement = (wrapper || doc);
+
+    const rfs = wrapperElement.requestFullScreen ||
+        wrapperElement.webkitRequestFullScreen ||
+        wrapperElement.mozRequestFullScreen ||
+        wrapperElement.msRequestFullScreen;
+
     const ifs = () => document.isFullScreen ||
         document.webkitIsFullScreen ||
         document.mozIsFullScreen;
-    element.addEventListener('click', () => {
-        if (!ifs()) rfs.call(doc);
+
+    element.addEventListener(triggerBy, (e) => {
+        if (!ifs()) rfs.call(wrapperElement);
         else document.exitFullscreen();
-        if (callback) callback(ifs());
+        if (callback) callback(ifs(), e);
     });
 };
