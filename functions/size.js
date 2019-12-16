@@ -1,7 +1,9 @@
 const upperFirst = require('../utils/upperFirst');
+const { c } = require('../values/global');
 
 module.exports = function size(props) { // props -> { width,height }
 
+    if (!props) props = {};
     if (!props.width) props.width = window.innerWidth;
     if (!props.height) props.height = window.innerHeight;
 

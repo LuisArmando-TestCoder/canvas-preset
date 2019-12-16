@@ -1,3 +1,5 @@
+const { ctx } = require('../values/global');
+
 module.exports = function render(vertex) {
     return {
         lines() {
