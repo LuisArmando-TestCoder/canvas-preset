@@ -8,7 +8,8 @@ const functions = {
     calculateDistance: require(`../functions/calculateDistance`),
     analyseAudio: require(`../functions/analyseAudio`),
     onMouseMove: require(`../functions/onMouseMove`),
-    setFullScreen: require(`../functions/setFullScreen`)
+    setFullScreen: require(`../functions/setFullScreen`),
+    speech: require(`../functions/speech`)
 };
 
 module.exports = functions;
