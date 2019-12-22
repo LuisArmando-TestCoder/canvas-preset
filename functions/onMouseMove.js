@@ -1,4 +1,4 @@
-module.exports = function onMouseMove(callback) {
+export default function onMouseMove(callback) {
     window.addEventListener('mousemove', e => {
         if (!window.mousePosition) window.mousePosition = {};
         window.mousePosition.x = e.clientX;

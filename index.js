@@ -1,6 +1,7 @@
+import functionValues from './values/functions.js';
+import globalValues from './values/global.js';
+
 export default callback => {
-  const functionValues = require('canvas-preset/values/functions');
-  const globalValues = require('canvas-preset/values/global');
 
   callback({
     ...globalValues,
