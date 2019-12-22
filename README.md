@@ -11,3 +11,5 @@ export default () => {
     return <canvas/>;
 }
 ```
+
+If es6-modules version nedeed use ```npm i -S LuisArmando-TestCoder/canvas-preset#es6-modules```
