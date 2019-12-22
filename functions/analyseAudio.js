@@ -1,4 +1,4 @@
-export default function analyseAudio(audio) {
+module.exports = function analyseAudio(audio) {
     const ctx = new AudioContext();
     const analyser = ctx.createAnalyser();
     const source = ctx.createMediaElementSource(audio);

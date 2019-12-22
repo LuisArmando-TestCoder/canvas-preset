@@ -1,4 +1,4 @@
-export default function setFullScreen({
+module.exports = function setFullScreen({
     element,
     triggerBy = 'click',
     callback,

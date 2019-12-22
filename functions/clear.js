@@ -1,7 +1,6 @@
-import globalValues from '../values/global.js';
-const { ctx, c } = globalValues;
+const { ctx, c } = require('../values/global');
 
-export default function clear(color) {
+module.exports = function clear(color) {
     if (!color) {
         ctx.clearRect(0, 0, c.width, c.height);
     } else if (typeof color === 'string') {

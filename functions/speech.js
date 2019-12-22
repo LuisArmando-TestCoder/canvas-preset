@@ -1,4 +1,4 @@
-export default function speech({
+module.exports = function speech({
     voiceName = 'Google UK English Male',
     rate = 0.85,
     pitch = 0.75,

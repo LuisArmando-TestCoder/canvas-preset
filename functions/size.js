@@ -1,8 +1,7 @@
-import upperFirst from '../utils/upperFirst.js';
-import globalValues from '../values/global.js';
-const { c } = globalValues;
+const upperFirst = require('../utils/upperFirst');
+const { c } = require('../values/global');
 
-export default function size(props) { // props -> { width,height }
+module.exports = function size(props) { // props -> { width,height }
 
     if (!props) props = {};
     if (!props.width) props.width = window.innerWidth;
