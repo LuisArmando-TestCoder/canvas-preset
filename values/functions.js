@@ -9,7 +9,8 @@ const functions = {
     analyseAudio: require(`../functions/analyseAudio`),
     onMouseMove: require(`../functions/onMouseMove`),
     setFullScreen: require(`../functions/setFullScreen`),
-    speech: require(`../functions/speech`)
+    speech: require(`../functions/speech`),
+    getDistanceBetween: require(`../functions/getDistanceBetween`),
 };
 
 module.exports = functions;
