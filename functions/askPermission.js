@@ -17,7 +17,7 @@ const options = [
     'magnetometer',
     'clipboard',
     'display-capture',
-    'nfc',
+    'nfc'
 ];
 
 export default permission => {
