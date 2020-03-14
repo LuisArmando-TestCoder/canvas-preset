@@ -1,4 +1,4 @@
-module.exports = function getDistanceBetween({
+export default function getDistanceBetween({
     x: x1,
     y: y1
 }) {

@@ -1,10 +1,10 @@
-module.exports = function analyseAudio(audio) {
+export default function analyseAudio(audio) {
     const ctx = new AudioContext();
     const analyser = ctx.createAnalyser();
     const source = ctx.createMediaElementSource(audio);
     let audioArray;
     source.connect(analyser);
-    analyser.connect(context.destination);
+    analyser.connect(ctx.destination);
 
     function getAverage(array) {
         return array.reduce((a, b) => a + b) / array.length;

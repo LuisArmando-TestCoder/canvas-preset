@@ -7,4 +7,4 @@ const globalValues = {
     mouse: () => window.mousePosition
 };
 
-module.exports = globalValues;
+export default globalValues;

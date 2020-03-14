@@ -1,6 +1,8 @@
-const { ctx } = require('../values/global');
+import global from '../values/global.js';
 
-module.exports = function render(vertex) {
+const { ctx } = global;
+
+export default function render(vertex) {
     return {
         lines() {
             // vertex {w = 1, c = '#000', group}

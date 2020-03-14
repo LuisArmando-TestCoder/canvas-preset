@@ -23,6 +23,7 @@ const options = [
 export default permission => {
     const permissionQuestion = { options };
     if (options.includes(permission)) {
+        // gotta add the permission request ant this should be ready to be included
         permissionQuestion.result = navigator.permissions.query({name: permission});
     }
     return permissionQuestion;

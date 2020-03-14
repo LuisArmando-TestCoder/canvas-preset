@@ -1,6 +1,6 @@
-const render = require('./render');
+import render from './render.js';
 
-module.exports = function renderGroup(type, array, call) {
+export default function renderGroup(type, array, call) {
     return array.forEach((obj, i) => {
         if (call) call(obj, i);
         render(obj)[type]();
