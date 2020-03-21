@@ -4,7 +4,8 @@
   "description": "canvas -> easier",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint lib/index.js"
+    "lint": "eslint lib/index.js",
+    "release": "npm-github-release"
   },
   "keywords": [
     "canvas"
@@ -14,6 +15,7 @@
   "devDependencies": {
     "eslint": "6.7.2",
     "eslint-config-airbnb-base": "14.0.0",
-    "eslint-plugin-import": "2.19.1"
+    "eslint-plugin-import": "2.19.1",
+    "npm-github-release": "^0.12.0"
   }
 }
