@@ -1,4 +1,4 @@
-const c = document.querySelector('canvas');
+let c = document.querySelector('canvas');
 const globalValues = {
     c,
     ctx: c.getContext('2d'),
