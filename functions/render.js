@@ -1,56 +1,54 @@
 import global from '../values/global.js';
 
-const { ctx } = global;
-
 export default function render(vertex) {
     return {
         lines() {
             // vertex {w = 1, c = '#000', group}
             // vertex.group [{x,y}]
-            ctx.beginPath();
-            ctx.moveTo(vertex.group[0].x, vertex.group[0].y);
+            global.ctx.beginPath();
+            global.ctx.moveTo(vertex.group[0].x, vertex.group[0].y);
             vertex.group.forEach(({
                 x,
                 y
             }, i) => {
-                if (i) ctx.lineTo(x, y);
+                if (i) global.ctx.lineTo(x, y);
             });
-            ctx.lineWidth = vertex.w;
-            ctx.strokeStyle = vertex.c;
-            ctx.stroke();
+            global.ctx.lineWidth = vertex.w;
+            global.ctx.strokeStyle = vertex.c;
+            global.ctx.stroke();
         },
         rect() {
-            ctx.beginPath();
-            ctx.save();
-            ctx.translate(vertex.x + vertex.w / 2, vertex.y + vertex.h / 2);
-            ctx.rotate(vertex.rot);
-            ctx.fillStyle = vertex.c;
-            ctx.fillRect(-vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h);
-            ctx.restore();
+            global.ctx.beginPath();
+            global.ctx.save();
+            global.ctx.translate(vertex.x + vertex.w / 2, vertex.y + vertex.h / 2);
+            global.ctx.rotate(vertex.rot);
+            global.ctx.fillStyle = vertex.c;
+            global.ctx.fillRect(-vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h);
+            global.ctx.restore();
         },
         arc() {
-            ctx.beginPath();
-            ctx.fillStyle = vertex.c;
-            ctx.arc(vertex.x, vertex.y, vertex.r, 0, Math.PI * 2);
-            ctx.fill();
+            global.ctx.beginPath();
+            global.ctx.fillStyle = vertex.c;
+            global.ctx.arc(vertex.x, vertex.y, vertex.r, 0, Math.PI * 2);
+            global.ctx.fill();
         },
         img() {
-            ctx.save();
-            ctx.translate(vertex.x + vertex.w / 2, vertex.y + vertex.h / 2);
-            ctx.rotate(vertex.rot);
+            global.ctx.save();
+            global.ctx.translate(vertex.x + vertex.w / 2, vertex.y + vertex.h / 2);
+            global.ctx.rotate(vertex.rot);
             if (vertex.img.complete) {
-                ctx.drawImage(vertex.img, -vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h)
+                global.ctx.drawImage(vertex.img, -vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h)
             } else {
-                ctx.fillRect(-vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h);
+                global.ctx.fillRect(-vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h);
             }
-            ctx.fillStyle = vertex.c;
-            ctx.restore();
+            global.ctx.fillStyle = vertex.c;
+            global.ctx.restore();
         },
         txt() {
-            ctx.beginPath();
-            ctx.fillStyle = vertex.c;
-            ctx.font = vertex.font;
-            ctx.fillText(vertex.txt, vertex.x, vertex.y);
+            global.ctx.beginPath();
+            global.ctx.fillStyle = vertex.c;
+            global.ctx.font = vertex.font;
+            global.ctx.fillText(vertex.txt, vertex.x, vertex.y);
         }
     }
 };

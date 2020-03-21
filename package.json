@@ -1,23 +1,57 @@
 {
-  "name": "canvas-preset",
-  "version": "1.4.0",
+  "_from": "canvas-preset",
+  "_id": "canvas-preset@1.4.0",
+  "_inBundle": false,
+  "_integrity": "sha512-sMVKpQaMT4KXJK367id65BbSgIJ2wJPcwRhK4rreT7qJJNebePHoEHW6+GUz+Hnn/CozcbHFOUGF4At16mxnzg==",
+  "_location": "/canvas-preset",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "canvas-preset",
+    "name": "canvas-preset",
+    "escapedName": "canvas-preset",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/canvas-preset/-/canvas-preset-1.4.0.tgz",
+  "_shasum": "98822ed1aec1b013e1f72f70b8bcf50dad1dc2fb",
+  "_spec": "canvas-preset",
+  "_where": "C:\\projects\\camilu-store",
+  "author": {
+    "name": "la-testcoder",
+    "email": "luisarmando.murillobaltodano@gmail.com",
+    "url": "https://github.com/LuisArmando-TestCoder"
+  },
+  "bugs": {
+    "url": "https://github.com/LuisArmando-TestCoder/canvas-preset/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
   "description": "canvas -> easier",
+  "devDependencies": {
+    "eslint": "6.7.2",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-plugin-import": "2.19.1"
+  },
+  "homepage": "https://github.com/LuisArmando-TestCoder/canvas-preset#readme",
+  "keywords": [
+    "canvas"
+  ],
+  "license": "MIT",
   "main": "index.js",
+  "name": "canvas-preset",
   "repository": {
-    "url": "https://github.com/LuisArmando-TestCoder/canvas-preset.git"
+    "url": "git+https://github.com/LuisArmando-TestCoder/canvas-preset.git"
   },
   "scripts": {
     "lint": "eslint lib/index.js",
     "release": "npm-github-release"
   },
-  "keywords": [
-    "canvas"
-  ],
-  "author": "la-testcoder <luisarmando.murillobaltodano@gmail.com> (https://github.com/LuisArmando-TestCoder)",
-  "license": "MIT",
-  "devDependencies": {
-    "eslint": "6.7.2",
-    "eslint-config-airbnb-base": "14.0.0",
-    "eslint-plugin-import": "2.19.1"
-  }
+  "version": "1.4.0"
 }

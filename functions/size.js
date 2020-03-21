@@ -1,11 +1,7 @@
 import upperFirst from '../utils/upperFirst.js';
 import global from '../values/global.js';
 
-const { c } = global;
-
-export default function size(props) { // props -> { width,height }
-
-    if (!props) props = {};
+export default function size(props = {}) { // props -> { width,height }
     if (!props.width) props.width = window.innerWidth;
     if (!props.height) props.height = window.innerHeight;
 
@@ -16,8 +12,8 @@ export default function size(props) { // props -> { width,height }
         if (value === innerAxis())
             value = () => innerAxis();
         else if (typeof value !== 'function') value = () => value;
-        c[key] = value();
+        global.c[key] = value();
 
-        window.addEventListener('resize', () => c[key] = value());
+        window.addEventListener('resize', () => global.c[key] = value());
     });
 };
