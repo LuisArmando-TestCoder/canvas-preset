@@ -1,5 +1,5 @@
 import globalValues from './values/global.js';
-import functionValues from './canvas-preset/values/functions.js';
+import functionValues from './values/functions.js';
 
 export default (callback, selector) => {
   if(selector) {

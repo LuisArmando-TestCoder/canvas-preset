@@ -4,7 +4,7 @@ const globalValues = {
     ctx: c.getContext('2d'),
     width: () => window.innerWidth,
     height: () => window.innerHeight,
-    mouse: () => window.mousePosition
+    mouse: () => window.mousePosition,
 };
 
 export default globalValues;

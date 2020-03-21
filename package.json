@@ -4,8 +4,7 @@
   "description": "canvas -> easier",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint lib/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint lib/index.js"
   },
   "keywords": [
     "canvas"
