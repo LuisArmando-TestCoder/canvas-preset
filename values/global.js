@@ -1,7 +1,7 @@
-let c = document.querySelector('canvas');
+
 const globalValues = {
-    c,
-    ctx: c ? c.getContext('2d') : null,
+    c: null,
+    ctx: null,
     width: () => window.innerWidth,
     height: () => window.innerHeight,
     mouse: () => window.mousePosition,
