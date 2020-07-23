@@ -1,11 +1,10 @@
-import global from '../values/global.js';
 
 export default function clear(color) {
     if (!color) {
-        global.ctx.clearRect(0, 0, global.c.width, global.c.height);
+        this.ctx.clearRect(0, 0, this.c.width, this.c.height);
     } else if (typeof color === 'string') {
-        global.ctx.fillStyle = color;
-        global.ctx.fillRect(0, 0, global.c.width, global.c.height);
-        global.ctx.beginPath();
+        this.ctx.fillStyle = color;
+        this.ctx.fillRect(0, 0, this.c.width, this.c.height);
+        this.ctx.beginPath();
     }
 };

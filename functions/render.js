@@ -1,54 +1,52 @@
-import global from '../values/global.js';
-
 export default function render(vertex) {
     return {
-        lines() {
+        lines: () => {
             // vertex {w = 1, c = '#000', group}
             // vertex.group [{x,y}]
-            global.ctx.beginPath();
-            global.ctx.moveTo(vertex.group[0].x, vertex.group[0].y);
+            this.ctx.beginPath();
+            this.ctx.moveTo(vertex.group[0].x, vertex.group[0].y);
             vertex.group.forEach(({
                 x,
                 y
             }, i) => {
-                if (i) global.ctx.lineTo(x, y);
+                if (i) this.ctx.lineTo(x, y);
             });
-            global.ctx.lineWidth = vertex.w;
-            global.ctx.strokeStyle = vertex.c;
-            global.ctx.stroke();
+            this.ctx.lineWidth = vertex.w;
+            this.ctx.strokeStyle = vertex.c;
+            this.ctx.stroke();
         },
-        rect() {
-            global.ctx.beginPath();
-            global.ctx.save();
-            global.ctx.translate(vertex.x + vertex.w / 2, vertex.y + vertex.h / 2);
-            global.ctx.rotate(vertex.rot);
-            global.ctx.fillStyle = vertex.c;
-            global.ctx.fillRect(-vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h);
-            global.ctx.restore();
+        rect: () => {
+            this.ctx.beginPath();
+            this.ctx.save();
+            this.ctx.translate(vertex.x + vertex.w / 2, vertex.y + vertex.h / 2);
+            this.ctx.rotate(vertex.rot);
+            this.ctx.fillStyle = vertex.c;
+            this.ctx.fillRect(-vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h);
+            this.ctx.restore();
         },
-        arc() {
-            global.ctx.beginPath();
-            global.ctx.fillStyle = vertex.c;
-            global.ctx.arc(vertex.x, vertex.y, vertex.r, 0, Math.PI * 2);
-            global.ctx.fill();
+        arc: () => {
+            this.ctx.beginPath();
+            this.ctx.fillStyle = vertex.c;
+            this.ctx.arc(vertex.x, vertex.y, vertex.r, 0, Math.PI * 2);
+            this.ctx.fill();
         },
-        img() {
-            global.ctx.save();
-            global.ctx.translate(vertex.x + vertex.w / 2, vertex.y + vertex.h / 2);
-            global.ctx.rotate(vertex.rot);
+        img: () => {
+            this.ctx.save();
+            this.ctx.translate(vertex.x + vertex.w / 2, vertex.y + vertex.h / 2);
+            this.ctx.rotate(vertex.rot);
             if (vertex.img.complete) {
-                global.ctx.drawImage(vertex.img, -vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h)
+                this.ctx.drawImage(vertex.img, -vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h)
             } else {
-                global.ctx.fillRect(-vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h);
+                this.ctx.fillRect(-vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h);
             }
-            global.ctx.fillStyle = vertex.c;
-            global.ctx.restore();
+            this.ctx.fillStyle = vertex.c;
+            this.ctx.restore();
         },
-        txt() {
-            global.ctx.beginPath();
-            global.ctx.fillStyle = vertex.c;
-            global.ctx.font = vertex.font;
-            global.ctx.fillText(vertex.txt, vertex.x, vertex.y);
+        txt: () => {
+            this.ctx.beginPath();
+            this.ctx.fillStyle = vertex.c;
+            this.ctx.font = vertex.font;
+            this.ctx.fillText(vertex.txt, vertex.x, vertex.y);
         }
     }
 };
