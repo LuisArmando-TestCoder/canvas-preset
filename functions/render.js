@@ -4,13 +4,15 @@ export default function render(vertex) {
             // vertex {w = 1, c = '#000', group}
             // vertex.group [{x,y}]
             this.ctx.beginPath();
-            this.ctx.moveTo(vertex.group[0].x, vertex.group[0].y);
-            vertex.group.forEach(({
-                x,
-                y
-            }, i) => {
-                if (i) this.ctx.lineTo(x, y);
-            });
+            if (vertex.group && vertex.group[0]) {
+                this.ctx.moveTo(vertex.group[0].x, vertex.group[0].y);
+                vertex.group.forEach(({
+                    x,
+                    y
+                }, i) => {
+                    if (i) this.ctx.lineTo(x, y);
+                });
+            }
             this.ctx.lineWidth = vertex.w;
             this.ctx.strokeStyle = vertex.c;
             this.ctx.stroke();
