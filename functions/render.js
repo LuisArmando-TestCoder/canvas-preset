@@ -22,7 +22,7 @@ export default function render(vector) {
             // vector {w = 1, c = '#000', group = [{x,y}], x, y}
             this.ctx.beginPath()
             this.ctx.save()
-            if (vector.rot && !vector.size) {
+            if (!isNaN(vector.rot) && !vector.size) {
                 vector.size = getLaidVectorSize(vector)
             }
             this.ctx.translate(
