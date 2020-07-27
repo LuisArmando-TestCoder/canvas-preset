@@ -24,16 +24,16 @@ export default function render(vector) {
             this.ctx.save()
             if (vector.rot && !vector.size) {
                 vector.size = getLaidVectorSize(vector)
-                this.ctx.translate(
-                    getMidCoord(vector, 'x'),
-                    getMidCoord(vector, 'y')
-                )
-                this.ctx.rotate(getRotation(vector.rot))
-                this.ctx.translate(
-                    -getMidCoord(vector, 'x'),
-                    -getMidCoord(vector, 'y')
-                )
             }
+            this.ctx.translate(
+                getMidCoord(vector, 'x'),
+                getMidCoord(vector, 'y')
+            )
+            this.ctx.rotate(getRotation(vector.rot))
+            this.ctx.translate(
+                -getMidCoord(vector, 'x'),
+                -getMidCoord(vector, 'y')
+            )
             if (vector.group && vector.group[0]) {
                 this.ctx.moveTo(
                     vector.group[0].x + (vector.x || 0),
