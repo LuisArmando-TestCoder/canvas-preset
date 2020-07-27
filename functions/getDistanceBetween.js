@@ -10,12 +10,12 @@ export default function getDistanceBetween({
             const [leg1, leg2] = [
                 x1 - x2,
                 y1 - y2
-            ];
+            ]
             return {
                 value: Math.sqrt(Math.abs(leg1 ** 2) + Math.abs(leg2 ** 2)),
                 leg1,
                 leg2
-            };
+            }
         }
-    };
+    }
 }

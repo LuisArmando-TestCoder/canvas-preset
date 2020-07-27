@@ -1,54 +1,88 @@
-export default function render(vertex) {
+function getRotation(rotation) {
+    return rotation / 180 * Math.PI
+}
+
+function getLaidVectorSize(vector) {
+    const laidVectorSize = {x: 0, y: 0}
+    if (!vector.laidGroup) vector.laidGroup = vector.group
+    vector.laidGroup.forEach(({x, y}) => {
+        if (x > laidVectorSize.x) laidVectorSize.x = x
+        if (y > laidVectorSize.y) laidVectorSize.y = y
+    })
+    return laidVectorSize
+}
+
+function getMidCoord(vector, key) {
+    return vector.size[key] / 2 + (vector[key] || 0)
+}
+
+export default function render(vector) {
     return {
         lines: () => {
-            // vertex {w = 1, c = '#000', group}
-            // vertex.group [{x,y}]
-            this.ctx.beginPath();
-            if (vertex.group && vertex.group[0]) {
-                this.ctx.moveTo(vertex.group[0].x, vertex.group[0].y);
-                vertex.group.forEach(({
-                    x,
-                    y
-                }, i) => {
-                    if (i) this.ctx.lineTo(x, y);
-                });
+            // vector {w = 1, c = '#000', group = [{x,y}], x, y}
+            this.ctx.beginPath()
+            this.ctx.save()
+            if (vector.rot && !vector.size) {
+                vector.size = getLaidVectorSize(vector)
+                this.ctx.translate(
+                    getMidCoord(vector, 'x'),
+                    getMidCoord(vector, 'y')
+                )
+                this.ctx.rotate(getRotation(vector.rot))
+                this.ctx.translate(
+                    -getMidCoord(vector, 'x'),
+                    -getMidCoord(vector, 'y')
+                )
             }
-            this.ctx.lineWidth = vertex.w;
-            this.ctx.strokeStyle = vertex.c;
-            this.ctx.stroke();
+            if (vector.group && vector.group[0]) {
+                this.ctx.moveTo(
+                    vector.group[0].x + (vector.x || 0),
+                    vector.group[0].y + (vector.y || 0)
+                )
+                vector.group.forEach((dot, i) => {
+                    if (i) this.ctx.lineTo(
+                        dot.x + (vector.x || 0),
+                        dot.y + (vector.y || 0)
+                    )
+                })
+            }
+            this.ctx.lineWidth = vector.w
+            this.ctx.strokeStyle = vector.c
+            this.ctx.stroke()
+            this.ctx.restore()
         },
         rect: () => {
-            this.ctx.beginPath();
-            this.ctx.save();
-            this.ctx.translate(vertex.x + vertex.w / 2, vertex.y + vertex.h / 2);
-            this.ctx.rotate(vertex.rot);
-            this.ctx.fillStyle = vertex.c;
-            this.ctx.fillRect(-vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h);
-            this.ctx.restore();
+            this.ctx.beginPath()
+            this.ctx.save()
+            this.ctx.translate(vector.x + vector.w / 2, vector.y + vector.h / 2)
+            this.ctx.rotate(getRotation(vector.rot))
+            this.ctx.fillStyle = vector.c
+            this.ctx.fillRect(-vector.w / 2, -vector.h / 2, vector.w, vector.h)
+            this.ctx.restore()
         },
         arc: () => {
-            this.ctx.beginPath();
-            this.ctx.fillStyle = vertex.c;
-            this.ctx.arc(vertex.x, vertex.y, vertex.r, 0, Math.PI * 2);
-            this.ctx.fill();
+            this.ctx.beginPath()
+            this.ctx.fillStyle = vector.c
+            this.ctx.arc(vector.x, vector.y, vector.r, 0, Math.PI * 2)
+            this.ctx.fill()
         },
         img: () => {
-            this.ctx.save();
-            this.ctx.translate(vertex.x + vertex.w / 2, vertex.y + vertex.h / 2);
-            this.ctx.rotate(vertex.rot);
-            if (vertex.img.complete) {
-                this.ctx.drawImage(vertex.img, -vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h)
+            this.ctx.save()
+            this.ctx.translate(vector.x + vector.w / 2, vector.y + vector.h / 2)
+            this.ctx.rotate(getRotation(vector.rot))
+            if (vector.img.complete) {
+                this.ctx.drawImage(vector.img, -vector.w / 2, -vector.h / 2, vector.w, vector.h)
             } else {
-                this.ctx.fillRect(-vertex.w / 2, -vertex.h / 2, vertex.w, vertex.h);
+                this.ctx.fillRect(-vector.w / 2, -vector.h / 2, vector.w, vector.h)
             }
-            this.ctx.fillStyle = vertex.c;
-            this.ctx.restore();
+            this.ctx.fillStyle = vector.c
+            this.ctx.restore()
         },
         txt: () => {
-            this.ctx.beginPath();
-            this.ctx.fillStyle = vertex.c;
-            this.ctx.font = vertex.font;
-            this.ctx.fillText(vertex.txt, vertex.x, vertex.y);
+            this.ctx.beginPath()
+            this.ctx.fillStyle = vector.c
+            this.ctx.font = vector.font
+            this.ctx.fillText(vector.txt, vector.x, vector.y)
         }
     }
-};
+}

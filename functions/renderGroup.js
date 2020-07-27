@@ -1,8 +1,9 @@
-import render from './render.js';
+import render from './render.js'
 
-export default function renderGroup(type, array, call) {
-    return array.forEach((obj, i) => {
-        if (call) call(obj, i);
-        render.call(this, obj)[type]();
-    });
-};
+export default function renderGroup(type, group, callbackBeforeRender, callbackAfterRender) {
+    return group.forEach((obj, i) => {
+        if (callbackBeforeRender) callbackBeforeRender(obj, i)
+        render.call(this, obj)[type]()
+        if (callbackAfterRender) callbackAfterRender(obj, i)
+    })
+}

@@ -5,6 +5,6 @@ const globalValues = {
     width: () => window.innerWidth,
     height: () => window.innerHeight,
     mouse: () => window.mousePosition,
-};
+}
 
-export default globalValues;
+export default globalValues
