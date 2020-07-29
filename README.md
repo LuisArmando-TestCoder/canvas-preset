@@ -1,5 +1,7 @@
 # canvas-preset
 
+[Visit the wiki here](https://github.com/LuisArmando-TestCoder/canvas-preset/wiki/0A---Learning-Canvas-Preset---Functions-and-Methods)
+
 ## Usage for React
 ```javascript
 import React, {useEffect} from 'react'
