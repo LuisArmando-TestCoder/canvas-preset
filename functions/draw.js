@@ -1,4 +1,12 @@
-export default function draw(f) {
-    if (typeof f === 'function') f()
-    requestAnimationFrame(() => draw(f))
+export default function draw(callback, frameRate) {
+    const maxFrameRate = this.maxFrameRate || 60
+    const rate = frameRate || maxFrameRate
+    const canShowFrame = !(this.currentFrame % Math.floor(maxFrameRate / rate))
+    const currentFrame = this && this.currentFrame || 0
+
+    this.currentFrame = (currentFrame + 1) % maxFrameRate
+
+    if (canShowFrame) callback(this.currentFrame)
+
+    requestAnimationFrame(() => draw.call(this, callback, rate))
 }
