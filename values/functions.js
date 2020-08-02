@@ -6,6 +6,7 @@ import renderGroup from '../functions/renderGroup.js'
 import random from '../functions/random.js'
 import get2DVerticesDistance from '../functions/get2DVerticesDistance.js'
 import analyseAudio from '../functions/analyseAudio.js'
+import setAudioToggle from '../functions/setAudioToggle.js'
 import onMouseMove from '../functions/onMouseMove.js'
 import setFullScreen from '../functions/setFullScreen.js'
 import speech from '../functions/speech.js'
@@ -20,6 +21,7 @@ const functions = {
     random,
     get2DVerticesDistance,
     analyseAudio,
+    setAudioToggle,
     onMouseMove,
     setFullScreen,
     speech,
