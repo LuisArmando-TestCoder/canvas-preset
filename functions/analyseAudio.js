@@ -1,3 +1,23 @@
+function getAverage(array) {
+    return array.reduce((a, b) => a + b) / array.length
+}
+
+function getFrequencies() {
+    this.audioArray = new Uint8Array(this.analyser.frequencyBinCount)
+    this.analyser.getByteFrequencyData(this.audioArray)
+    this.audioArray.average = getAverage(this.audioArray)
+
+    return this.audioArray
+}
+
+function getAmplitudes() {
+    this.audioArray = new Uint8Array(this.analyser.frequencyBinCount)
+    this.analyser.getByteTimeDomainData(this.audioArray)
+    this.audioArray.average = getAverage(this.audioArray)
+
+    return this.audioArray
+}
+
 export default function analyseAudio(audio) {
     const ctx = new AudioContext()
     const analyser = ctx.createAnalyser()
@@ -6,29 +26,13 @@ export default function analyseAudio(audio) {
     source.connect(analyser)
     analyser.connect(ctx.destination)
 
-    function getAverage(array) {
-        return array.reduce((a, b) => a + b) / array.length
-    }
+    const analyzerBind = {analyser, audioArray}
 
-    function getFrequency() {
-        audioArray = new Uint8Array(analyser.frequencyBinCount)
-        analyser.getByteFrequencyData(audioArray)
-        return {
-            array: audioArray,
-            average: getAverage(audioArray),
-        }
-    }
-
-    function getAmplitude() {
-        audioArray = new Uint8Array(analyser.frequencyBinCount)
-        analyser.getByteTimeDomainData(audioArray)
-        return {
-            array: audioArray,
-            average: getAverage(audioArray),
-        }
-    }
     return {
-        getFrequency,
-        getAmplitude,
+        getFrequencies: getFrequencies.bind(analyzerBind),
+        getAmplitudes: getAmplitudes.bind(analyzerBind),
+        analyser,
+        source,
+        audioContext: ctx
     }
 }
