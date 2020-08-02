@@ -1,5 +1,5 @@
 export default function draw(callback, frameRate) {
-    const maxFrameRate = this.maxFrameRate || 60
+    const maxFrameRate = this && this.maxFrameRate || 60
     const rate = frameRate || maxFrameRate
     const canShowFrame = !(this.currentFrame % Math.floor(maxFrameRate / rate))
     const currentFrame = this && this.currentFrame || 0
