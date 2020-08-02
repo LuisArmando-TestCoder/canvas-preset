@@ -6,7 +6,7 @@ export default (callback, selector = 'canvas') => {
   const functions = {...functionValues}
 
   global.c = document.querySelector(selector)
-  global.ctx = global.c.getContext('2d')
+  if (global.c) global.ctx = global.c.getContext('2d')
 
   Object.keys(functions).forEach(key => {
     functions[key] = functions[key].bind({
