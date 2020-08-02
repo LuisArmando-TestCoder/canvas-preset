@@ -53,5 +53,5 @@
     "lint": "eslint lib/index.js",
     "release": "npm-github-release"
   },
-  "version": "2.2.0"
+  "version": "2.2.1"
 }
