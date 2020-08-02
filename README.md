@@ -1,10 +1,10 @@
 # canvas-preset
 
 ## Import from CDN
-### https://luisarmando-testcoder.github.io/canvas-preset/index.js
+#### https://luisarmando-testcoder.github.io/canvas-preset/index.js
 
 ## Visit the wiki
-### https://github.com/LuisArmando-TestCoder/canvas-preset/wiki/0A---Learning-Canvas-Preset---Functions-and-Methods
+#### https://github.com/LuisArmando-TestCoder/canvas-preset/wiki
 
 ## Usage for React
 ```javascript
