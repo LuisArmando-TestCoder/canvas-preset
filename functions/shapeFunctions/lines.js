@@ -1,30 +1,10 @@
-function getLaidPoints(points) {
-    const pointsToLaid = JSON.parse(JSON.stringify(points));
-    const least = {
-        x: Infinity,
-        y: Infinity
-    };
-
-    pointsToLaid.forEach(({x, y}) => {
-        if (x < least.x) least.x = x;
-        if (y < least.y) least.y = y;
-    });
-
-    pointsToLaid.forEach(vector => {
-        vector.x -= least.x;
-        vector.y -= least.y;
-    });
-
-    return pointsToLaid;
-}
-
 function getRotation(rotation) {
     return rotation / 180 * Math.PI
 }
 
 function getLaidVectorSize(vector) {
     const laidVectorSize = {x: 0, y: 0}
-    if (!vector.laidGroup) vector.laidGroup = getLaidPoints(vector.group)
+    if (!vector.laidGroup) vector.laidGroup = vector.group
     vector.laidGroup.forEach(({x, y}) => {
         if (x > laidVectorSize.x) laidVectorSize.x = x
         if (y > laidVectorSize.y) laidVectorSize.y = y
