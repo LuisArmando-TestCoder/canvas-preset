@@ -39,10 +39,6 @@ function getLaidVectorSize(vector) {
     return laidVectorSize
 }
 
-function getMidCoord(vector, key) {
-    return vector.size[key] / 2 + (vector[key] || 0)
-}
-
 export default function lines() {
     // vector {w = 1, c = '#000', group = [{x,y}], x, y}
     const IsRotationNumber = () => !isNaN(this.vector.rot)
@@ -68,8 +64,8 @@ export default function lines() {
         )
         this.ctx.rotate(getRotation(this.vector.rot))
         this.ctx.translate(
-            -getMidCoord(this.vector, 'x'),
-            -getMidCoord(this.vector, 'y')
+            -chosen.x - this.vector.size.x / 2 * chosen.scale,
+            -chosen.y - this.vector.size.y / 2 * chosen.scale
         )
     }
     if (chosen.group && chosen.group[0]) {
