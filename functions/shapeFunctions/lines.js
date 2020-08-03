@@ -44,15 +44,17 @@ export default function lines() {
     if (!isNaN(this.vector.rot) && !this.vector.size) {
         this.vector.size = getLaidVectorSize(this.vector)
     }
-    this.ctx.translate(
-        getMidCoord(this.vector, 'x'),
-        getMidCoord(this.vector, 'y')
-    )
-    this.ctx.rotate(getRotation(this.vector.rot))
-    this.ctx.translate(
-        -getMidCoord(this.vector, 'x'),
-        -getMidCoord(this.vector, 'y')
-    )
+    if (this.vector.size) {
+        this.ctx.translate(
+            getMidCoord(this.vector, 'x'),
+            getMidCoord(this.vector, 'y')
+        )
+        this.ctx.rotate(getRotation(this.vector.rot))
+        this.ctx.translate(
+            -getMidCoord(this.vector, 'x'),
+            -getMidCoord(this.vector, 'y')
+        )
+    }
     if (chosenGroup && chosenGroup[0]) {
         this.ctx.moveTo(
             chosenGroup[0].x + (this.vector.x || 0),
