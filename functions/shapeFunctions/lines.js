@@ -32,7 +32,6 @@ function getRotation(rotation) {
 
 function getLaidVectorSize(vector) {
     const laidVectorSize = {x: 0, y: 0}
-    if (!vector.laidGroup) vector.laidGroup = getLaidPoints(vector.group)
     vector.laidGroup.forEach(({x, y}) => {
         if (x > laidVectorSize.x) laidVectorSize.x = x
         if (y > laidVectorSize.y) laidVectorSize.y = y
@@ -48,6 +47,7 @@ export default function lines() {
     // vector {w = 1, c = '#000', group = [{x,y}], x, y}
     const IsRotationNumber = !isNaN(this.vector.rot)
     const sizeExists = this.vector.size
+    const laidGroupExists = this.vector.laidGroup
     const chosen = {
         group: this.vector.laidGroup || this.vector.group,
         scale: this.vector.scale || 1
@@ -60,7 +60,8 @@ export default function lines() {
                 chosen.scale
     this.ctx.beginPath()
     this.ctx.save()
-    if (IsRotationNumber && !sizeExists) {
+    if (IsRotationNumber && !sizeExists && !laidGroupExists) {
+        this.vector.laidGroup = getLaidPoints(this.vector.group)
         this.vector.size = getLaidVectorSize(this.vector)
     }
     if (sizeExists) {
