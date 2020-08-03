@@ -70,13 +70,13 @@ export default function lines() {
     }
     if (chosen.group && chosen.group[0]) {
         this.ctx.moveTo(
-            (chosen.group[0].x + chosen.x) * chosen.scale,
-            (chosen.group[0].y + chosen.y) * chosen.scale,
+            (chosen.group[0].x * chosen.scale) + chosen.x,
+            (chosen.group[0].y * chosen.scale) + chosen.y,
         )
         chosen.group.forEach((dot, i) => {
             if (i) this.ctx.lineTo(
-                (dot.x + chosen.x) * chosen.scale,
-                (dot.y + chosen.y) * chosen.scale,
+                (dot.x * chosen.scale) + chosen.x,
+                (dot.y * chosen.scale) + chosen.y,
             )
         })
     }
