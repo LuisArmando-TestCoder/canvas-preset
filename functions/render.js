@@ -1,3 +1,4 @@
+import gradient from './shapeFunctions/gradient.js'
 import lines from './shapeFunctions/lines.js'
 import rect from './shapeFunctions/rect.js'
 import arc from './shapeFunctions/arc.js'
@@ -6,6 +7,7 @@ import txt from './shapeFunctions/txt.js'
 
 export default function render(vector) {
     const shapeFunctions = {
+        gradient,
         lines,
         rect,
         arc,
