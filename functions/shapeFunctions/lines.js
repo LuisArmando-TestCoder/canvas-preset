@@ -43,6 +43,12 @@ function getMidCoord(vector, key) {
     return vector.size[key] / 2 + (vector[key] || 0)
 }
 
+function getKeyVectorCenteredSlope(chosen, key) {
+    return (this.vector.size ?
+            this.vector.size[key] / 2 : 0) * 
+            chosen.scale
+}
+
 export default function lines() {
     // vector {w = 1, c = '#000', group = [{x,y}], x, y}
     const IsRotationNumber = !isNaN(this.vector.rot)
@@ -52,8 +58,10 @@ export default function lines() {
         group: this.vector.laidGroup || this.vector.group,
         scale: this.vector.scale || 1
     }
-    chosen.x = (this.vector.x || 0)
-    chosen.y = (this.vector.y || 0)
+    chosen.x = (this.vector.x || 0) -
+                getKeyVectorCenteredSlope.call(this, chosen, 'x')
+    chosen.y = (this.vector.y || 0) -
+                getKeyVectorCenteredSlope.call(this, chosen, 'y')
     this.ctx.beginPath()
     this.ctx.save()
     if (IsRotationNumber && !sizeExists && !laidGroupExists) {
