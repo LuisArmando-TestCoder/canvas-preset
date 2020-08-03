@@ -50,8 +50,8 @@ export default function lines() {
     const sizeExists = this.vector.size
     const chosen = {
         group: this.vector.laidGroup || this.vector.group,
-        x: (this.vector.x || 0),
-        y: (this.vector.y || 0),
+        x: (this.vector.x || 0) - sizeExists ? this.vector.size.x / 2 : 0,
+        y: (this.vector.y || 0) - sizeExists ? this.vector.size.y / 2 : 0,
         scale: this.vector.scale || 1
     }
     this.ctx.beginPath()
