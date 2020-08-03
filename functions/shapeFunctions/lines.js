@@ -52,12 +52,8 @@ export default function lines() {
         group: this.vector.laidGroup || this.vector.group,
         scale: this.vector.scale || 1
     }
-    chosen.x = (this.vector.x || 0) -
-               (sizeExists ? this.vector.size.x / 2 : 0) *
-                chosen.scale
-    chosen.y = (this.vector.y || 0) -
-               (sizeExists ? this.vector.size.y / 2 : 0) *
-                chosen.scale
+    chosen.x = (this.vector.x || 0)
+    chosen.y = (this.vector.y || 0)
     this.ctx.beginPath()
     this.ctx.save()
     if (IsRotationNumber && !sizeExists && !laidGroupExists) {
