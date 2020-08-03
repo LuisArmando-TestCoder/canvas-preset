@@ -58,10 +58,13 @@ export default function lines() {
         group: this.vector.laidGroup || this.vector.group,
         scale: this.vector.scale || 1
     }
-    chosen.x = (this.vector.x || 0) -
-                getKeyVectorCenteredSlope.call(this, chosen, 'x')
-    chosen.y = (this.vector.y || 0) -
-                getKeyVectorCenteredSlope.call(this, chosen, 'y')
+    const slope = {
+        x: getKeyVectorCenteredSlope.call(this, chosen, 'x'),
+        y: getKeyVectorCenteredSlope.call(this, chosen, 'y')
+    }
+    chosen.x = (this.vector.x || 0) - slope.x
+    chosen.y = (this.vector.y || 0) - slope.y
+                
     this.ctx.beginPath()
     this.ctx.save()
     if (IsRotationNumber() && !sizeExists() && !laidGroupExists()) {
@@ -70,13 +73,13 @@ export default function lines() {
     }
     if (sizeExists()) {
         this.ctx.translate(
-            getMidCoord(this.vector, 'x'),
-            getMidCoord(this.vector, 'y')
+            getMidCoord(this.vector, 'x') - slope,
+            getMidCoord(this.vector, 'y') - slope
         )
         this.ctx.rotate(getRotation(this.vector.rot))
         this.ctx.translate(
-            -getMidCoord(this.vector, 'x'),
-            -getMidCoord(this.vector, 'y')
+            -getMidCoord(this.vector, 'x') + slope,
+            -getMidCoord(this.vector, 'y') + slope
         )
     }
     if (chosen.group && chosen.group[0]) {
