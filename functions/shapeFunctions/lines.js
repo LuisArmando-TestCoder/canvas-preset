@@ -72,14 +72,15 @@ export default function lines() {
         this.vector.size = getLaidVectorSize(this.vector)
     }
     if (sizeExists()) {
+        const translateVector = {...chosen, size: this.vector.size}
         this.ctx.translate(
-            getMidCoord(chosen, 'x'),
-            getMidCoord(chosen, 'y')
+            getMidCoord(translateVector, 'x'),
+            getMidCoord(translateVector, 'y')
         )
         this.ctx.rotate(getRotation(this.vector.rot))
         this.ctx.translate(
-            -getMidCoord(chosen, 'x'),
-            -getMidCoord(chosen, 'y')
+            -getMidCoord(translateVector, 'x'),
+            -getMidCoord(translateVector, 'y')
         )
     }
     if (chosen.group && chosen.group[0]) {
