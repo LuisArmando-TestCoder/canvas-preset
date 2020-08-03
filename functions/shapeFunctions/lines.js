@@ -63,8 +63,8 @@ export default function lines() {
     }
     if (sizeExists()) {
         this.ctx.translate(
-            getMidCoord(this.vector, 'x'),
-            getMidCoord(this.vector, 'y')
+            getMidCoord(this.vector, 'x') - vector.size.x / 2,
+            getMidCoord(this.vector, 'y') - vector.size.y / 2
         )
         this.ctx.rotate(getRotation(this.vector.rot))
         this.ctx.translate(
