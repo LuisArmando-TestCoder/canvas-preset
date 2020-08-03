@@ -73,13 +73,13 @@ export default function lines() {
     }
     if (sizeExists()) {
         this.ctx.translate(
-            getMidCoord(this.vector, 'x') - slope,
-            getMidCoord(this.vector, 'y') - slope
+            getMidCoord(chosen, 'x'),
+            getMidCoord(chosen, 'y')
         )
         this.ctx.rotate(getRotation(this.vector.rot))
         this.ctx.translate(
-            -getMidCoord(this.vector, 'x') + slope,
-            -getMidCoord(this.vector, 'y') + slope
+            -getMidCoord(chosen, 'x'),
+            -getMidCoord(chosen, 'y')
         )
     }
     if (chosen.group && chosen.group[0]) {
