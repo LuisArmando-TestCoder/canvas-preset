@@ -46,18 +46,20 @@ function getMidCoord(vector, key) {
 
 export default function lines() {
     // vector {w = 1, c = '#000', group = [{x,y}], x, y}
+    const IsRotationNumber = !isNaN(this.vector.rot)
+    const sizeExists = this.vector.size
     const chosen = {
         group: this.vector.laidGroup || this.vector.group,
-        x: this.vector.x || 0,
-        y: this.vector.y || 0,
+        x: (this.vector.x || 0) + sizeExists ? this.vector.size.x : 0,
+        y: (this.vector.y || 0) + sizeExists ? this.vector.size.y : 0,
         scale: this.vector.scale || 1
     }
     this.ctx.beginPath()
     this.ctx.save()
-    if (!isNaN(this.vector.rot) && !this.vector.size) {
+    if (IsRotationNumber && !sizeExists) {
         this.vector.size = getLaidVectorSize(this.vector)
     }
-    if (this.vector.size) {
+    if (sizeExists) {
         this.ctx.translate(
             getMidCoord(this.vector, 'x'),
             getMidCoord(this.vector, 'y')
