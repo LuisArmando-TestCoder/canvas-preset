@@ -51,9 +51,9 @@ function getKeyVectorCenteredSlope(chosen, key) {
 
 export default function lines() {
     // vector {w = 1, c = '#000', group = [{x,y}], x, y}
-    const IsRotationNumber = !isNaN(this.vector.rot)
-    const sizeExists = this.vector.size
-    const laidGroupExists = this.vector.laidGroup
+    const IsRotationNumber = () => !isNaN(this.vector.rot)
+    const sizeExists = () => this.vector.size
+    const laidGroupExists = () => this.vector.laidGroup
     const chosen = {
         group: this.vector.laidGroup || this.vector.group,
         scale: this.vector.scale || 1
@@ -64,11 +64,11 @@ export default function lines() {
                 getKeyVectorCenteredSlope.call(this, chosen, 'y')
     this.ctx.beginPath()
     this.ctx.save()
-    if (IsRotationNumber && !sizeExists && !laidGroupExists) {
+    if (IsRotationNumber() && !sizeExists() && !laidGroupExists()) {
         this.vector.laidGroup = getLaidPoints(this.vector.group)
         this.vector.size = getLaidVectorSize(this.vector)
     }
-    if (sizeExists) {
+    if (sizeExists()) {
         this.ctx.translate(
             getMidCoord(this.vector, 'x'),
             getMidCoord(this.vector, 'y')
