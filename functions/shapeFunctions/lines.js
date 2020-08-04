@@ -1,3 +1,5 @@
+import getRotation from '../../utils/getRotation.js'
+
 function setLeastVector(pointsToLaid, least) {
     pointsToLaid.forEach(({x, y}) => {
         if (x < least.x) least.x = x
@@ -24,10 +26,6 @@ function getLaidPoints(points) {
     laidVector(pointsToLaid, least)
 
     return pointsToLaid
-}
-
-function getRotation(rotation) {
-    return rotation / 180 * Math.PI
 }
 
 function getLaidVectorSize(vector) {

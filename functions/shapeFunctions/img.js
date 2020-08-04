@@ -1,3 +1,5 @@
+import getRotation from '../../utils/getRotation.js'
+
 export default function img() {
     this.ctx.save()
     this.ctx.translate(this.vector.x + this.vector.w / 2, this.vector.y + this.vector.h / 2)

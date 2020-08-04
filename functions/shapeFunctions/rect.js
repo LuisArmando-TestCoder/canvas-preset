@@ -1,3 +1,5 @@
+import getRotation from '../../utils/getRotation.js'
+
 export default function rect() {
     this.ctx.beginPath()
     this.ctx.save()
