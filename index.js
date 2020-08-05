@@ -19,7 +19,7 @@ export default (callback, selector = 'canvas') => {
     ...functions
   }
 
-  callback(presetObject)
+  if (callback) callback(presetObject)
 
   return presetObject
 }
