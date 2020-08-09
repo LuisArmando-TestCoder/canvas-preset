@@ -1,5 +1,22 @@
 import getRotation from '../../utils/getRotation.js'
 
+export default function lines() {
+    // vector {w = 1, c = '#000', group = [{x,y}], x, y}
+    const chosen = {
+        group: this.vector.laidGroup || this.vector.group,
+        x: (this.vector.x || 0),
+        y: (this.vector.y || 0),
+        scale: this.vector.scale || 1
+    }
+    const sizeExists = () => this.vector.size
+    setLaidShape.call(this, sizeExists)
+    this.ctx.beginPath()
+    this.ctx.save()
+    placeLine.call(this, sizeExists, chosen)
+    paintStroke.call(this)
+    this.ctx.restore()
+}
+
 function setLeastVector(pointsToLaid, least) {
     pointsToLaid.forEach(({x, y}) => {
         if (x < least.x) least.x = x
@@ -37,49 +54,94 @@ function getLaidVectorSize(vector) {
     return laidVectorSize
 }
 
-export default function lines() {
-    // vector {w = 1, c = '#000', group = [{x,y}], x, y}
+function setLaidShape(sizeExists) {
     const IsRotationNumber = () => !isNaN(this.vector.rot)
-    const sizeExists = () => this.vector.size
     const laidGroupExists = () => this.vector.laidGroup
-    const chosen = {
-        group: this.vector.laidGroup || this.vector.group,
-        x: (this.vector.x || 0),
-        y: (this.vector.y || 0),
-        scale: this.vector.scale || 1
-    }
-                
-    this.ctx.beginPath()
-    this.ctx.save()
     if (IsRotationNumber() && !sizeExists() && !laidGroupExists()) {
         this.vector.laidGroup = getLaidPoints(this.vector.group)
         this.vector.size = getLaidVectorSize(this.vector)
     }
+}
+
+function placeLine(sizeExists, chosen) {
     if (sizeExists()) {
-        this.ctx.translate(
-            chosen.x,
-            chosen.y
-        )
-        this.ctx.rotate(getRotation(this.vector.rot))
-        this.ctx.translate(
-            -chosen.x - this.vector.size.x / 2 * chosen.scale,
-            -chosen.y - this.vector.size.y / 2 * chosen.scale
-        )
+        offsetShapeForRotation.call(this, chosen)
+        rotateShape.call(this)
+        repositionShapeToOriginalPosition.call(this, chosen)
     }
     if (chosen.group && chosen.group[0]) {
-        this.ctx.moveTo(
-            (chosen.group[0].x * chosen.scale) + chosen.x,
-            (chosen.group[0].y * chosen.scale) + chosen.y,
-        )
-        chosen.group.forEach((dot, i) => {
-            if (i) this.ctx.lineTo(
-                (dot.x * chosen.scale) + chosen.x,
-                (dot.y * chosen.scale) + chosen.y,
-            )
-        })
+        setFirstLineVector.call(this, chosen)
+        setCompleteLine.call(this, chosen)
     }
-    this.ctx.lineWidth = this.vector.w
-    this.ctx.strokeStyle = this.vector.c
+}
+
+function repositionShapeToOriginalPosition(chosen) {
+    this.ctx.translate(
+        -(this.temporal.x || chosen.x) -
+        (
+            this.temporal.size && this.temporal.size.x ||
+            this.vector.size.x
+        ) / 2 *
+        (this.temporal.scale || chosen.scale),
+        -(this.temporal.y || chosen.y) -
+        (
+            this.temporal.size && this.temporal.size.y ||
+            this.vector.size.y
+        ) / 2 *
+        (this.temporal.scale || chosen.scale)
+    )
+}
+
+function rotateShape() {
+    this.ctx.rotate(
+        getRotation(
+            this.temporal.rot || this.vector.rot
+        )
+    )
+}
+
+function offsetShapeForRotation(chosen) {
+    this.ctx.translate(
+        (this.temporal.x || chosen.x),
+        (this.temporal.y || chosen.y)
+    )
+}
+
+function setFirstLineVector(chosen) {
+    this.ctx.moveTo(
+        (
+            chosen.group[0].x *
+            (this.temporal.scale || chosen.scale)
+        ) +
+        (this.temporal.x || chosen.x),
+        (
+            chosen.group[0].y *
+            (this.temporal.scale || chosen.scale)
+        ) +
+        (this.temporal.y || chosen.y),
+    )
+}
+
+function setCompleteLine(chosen) {
+    (this.temporal.group || chosen.group)
+    .forEach((dot, i) => {
+        if (i) this.ctx.lineTo(
+            (
+                dot.x *
+                (this.temporal.scale || chosen.scale)
+            ) +
+            (this.temporal.x || chosen.x),
+            (
+                dot.y *
+                (this.temporal.scale || chosen.scale)
+            ) +
+            (this.temporal.y || chosen.y),
+        )
+    })
+}
+
+function paintStroke() {
+    this.ctx.lineWidth = this.temporal.w || this.vector.w
+    this.ctx.strokeStyle = this.temporal.c || this.vector.c
     this.ctx.stroke()
-    this.ctx.restore()
 }

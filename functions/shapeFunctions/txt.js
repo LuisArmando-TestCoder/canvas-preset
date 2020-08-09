@@ -1,6 +1,22 @@
 export default function txt() {
     this.ctx.beginPath()
-    this.ctx.fillStyle = this.vector.c
-    this.ctx.font = this.vector.font
-    this.ctx.fillText(this.vector.txt, this.vector.x, this.vector.y)
+    setTextColor.call(this)
+    setTextFont.call(this)
+    setText.call(this)
+}
+
+function setText() {
+    this.ctx.fillText(
+        this.temporal.txt || this.vector.txt, 
+        this.temporal.x || this.vector.x, 
+        this.temporal.y || this.vector.y
+    )
+}
+
+function setTextFont() {
+    this.ctx.font = this.temporal.font || this.vector.font
+}
+
+function setTextColor() {
+    this.ctx.fillStyle = this.temporal.c || this.vector.c
 }
