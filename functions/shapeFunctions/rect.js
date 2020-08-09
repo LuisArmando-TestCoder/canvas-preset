@@ -30,7 +30,7 @@ function offsetRectForRotation() {
         (this.temporal.w || this.vector.w) / 2,
         (this.temporal.y || this.vector.y) +
         (this.temporal.h || this.vector.h) / 2
-    })
+    )
 }
 
 function drawRect() {
