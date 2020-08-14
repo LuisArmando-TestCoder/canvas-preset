@@ -1,6 +1,6 @@
 import getRotation from '../../utils/getRotation.js'
 
-export default function lines() {
+export default function lines(groupTemporalVectorCallback) {
     // vector {w = 1, c = '#000', group = [{x,y}], x, y}
     const chosen = {
         group: this.vector.laidGroup || this.vector.group,
@@ -12,7 +12,14 @@ export default function lines() {
     setLaidShape.call(this, sizeExists)
     this.ctx.beginPath()
     this.ctx.save()
-    placeLine.call(this, sizeExists, chosen)
+    placeLine.call(
+        {
+            ...this,
+            groupTemporalVectorCallback
+        },
+        sizeExists,
+        chosen
+    )
     paintStroke.call(this)
     this.ctx.restore()
 }
@@ -108,14 +115,17 @@ function offsetShapeForRotation(chosen) {
 }
 
 function setFirstLineVector(chosen) {
+    const chosenFirst = this.groupTemporalVectorCallback &&
+        this.groupTemporalVectorCallback(chosen.group[0]) ||
+        chosen.group[0]
     this.ctx.moveTo(
         (
-            chosen.group[0].x *
+            chosenFirst.x *
             (this.temporal.scale || chosen.scale)
         ) +
         (this.temporal.x || chosen.x),
         (
-            chosen.group[0].y *
+            chosenFirst.y *
             (this.temporal.scale || chosen.scale)
         ) +
         (this.temporal.y || chosen.y),
@@ -125,14 +135,16 @@ function setFirstLineVector(chosen) {
 function setCompleteLine(chosen) {
     (this.temporal.group || chosen.group)
     .forEach((dot, i) => {
+        const chosenDot = this.groupTemporalVectorCallback &&
+            this.groupTemporalVectorCallback(dot) || dot
         if (i) this.ctx.lineTo(
             (
-                dot.x *
+                chosenDot.x *
                 (this.temporal.scale || chosen.scale)
             ) +
             (this.temporal.x || chosen.x),
             (
-                dot.y *
+                chosenDot.y *
                 (this.temporal.scale || chosen.scale)
             ) +
             (this.temporal.y || chosen.y),
