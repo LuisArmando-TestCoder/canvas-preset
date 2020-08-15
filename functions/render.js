@@ -14,8 +14,13 @@ export default function render(vector) {
         img,
         txt
     }
+    patchTemporalVector.call(this)
     Object.keys(shapeFunctions).forEach(key => {
         shapeFunctions[key] = shapeFunctions[key].bind({...this, vector})
     })
     return shapeFunctions
+}
+
+function patchTemporalVector() {
+    if (!this.temporal) this.temporal = {}
 }
