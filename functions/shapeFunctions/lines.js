@@ -162,7 +162,13 @@ function setVectorInLine(chosenDot, methodName) {
 }
 
 function paintStroke() {
-    this.ctx.lineWidth = this.temporal.w || this.vector.w
-    this.ctx.strokeStyle = this.temporal.c || this.vector.c
-    this.ctx.stroke()
+    const canPaintStroke = this.temporal.w ||
+        this.vector.w &&
+        this.temporal.c ||
+        this.vector.c
+    if (canPaintStroke) {
+        this.ctx.lineWidth = this.temporal.w || this.vector.w
+        this.ctx.strokeStyle = this.temporal.c || this.vector.c
+        this.ctx.stroke()
+    }
 }
