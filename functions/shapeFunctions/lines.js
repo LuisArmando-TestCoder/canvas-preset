@@ -116,40 +116,41 @@ function offsetShapeForRotation(chosen) {
 
 function setFirstLineVector(chosen) {
     const chosenFirst = this.groupTemporalVectorCallback &&
-        this.groupTemporalVectorCallback(chosen.group[0]) ||
+        this.groupTemporalVectorCallback(chosen.group[0], 0) ||
         chosen.group[0]
-    this.ctx.moveTo(
-        (
-            chosenFirst.x *
-            (this.temporal.scale || chosen.scale)
-        ) +
-        (this.temporal.x || chosen.x),
-        (
-            chosenFirst.y *
-            (this.temporal.scale || chosen.scale)
-        ) +
-        (this.temporal.y || chosen.y),
+    setVectorInLine.call(
+        {...this, chosen},
+        chosenFirst,
+        'moveTo'
     )
 }
 
 function setCompleteLine(chosen) {
-    (this.temporal.group || chosen.group)
+    [...(this.temporal.group || chosen.group)].splice(1)
     .forEach((dot, i) => {
         const chosenDot = this.groupTemporalVectorCallback &&
-            this.groupTemporalVectorCallback(dot) || dot
-        if (i) this.ctx.lineTo(
-            (
-                chosenDot.x *
-                (this.temporal.scale || chosen.scale)
-            ) +
-            (this.temporal.x || chosen.x),
-            (
-                chosenDot.y *
-                (this.temporal.scale || chosen.scale)
-            ) +
-            (this.temporal.y || chosen.y),
+            this.groupTemporalVectorCallback(dot, i + 1) || dot
+        setVectorInLine.call(
+            {...this, chosen},
+            chosenDot,
+            'lineTo'
         )
     })
+}
+
+function setVectorInLine(chosenDot, methodName) {
+    this.ctx[methodName](
+        (
+            chosenDot.x *
+            (this.temporal.scale || this.chosen.scale)
+        ) +
+        (this.temporal.x || this.chosen.x),
+        (
+            chosenDot.y *
+            (this.temporal.scale || this.chosen.scale)
+        ) +
+        (this.temporal.y || this.chosen.y),
+    )
 }
 
 function paintStroke() {
