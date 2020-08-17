@@ -20,8 +20,16 @@ export default function lines(groupTemporalVectorCallback) {
         sizeExists,
         chosen
     )
+    fillShape.call(this)
     paintStroke.call(this)
     this.ctx.restore()
+}
+
+function fillShape() {
+    if (this.vector.fill || this.temporal.fill) {
+        this.ctx.fillStyle = this.temporal.fill || this.vector.fill
+        this.ctx.fill()
+    }
 }
 
 function setLeastVector(pointsToLaid, least) {
