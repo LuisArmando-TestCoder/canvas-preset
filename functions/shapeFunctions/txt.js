@@ -7,7 +7,7 @@ export default function txt() {
 
 function setText() {
     this.ctx.fillText(
-        this.temporal.txt || this.vector.txt, 
+        this.temporal.text || this.vector.text, 
         this.temporal.x || this.vector.x, 
         this.temporal.y || this.vector.y
     )
@@ -18,5 +18,5 @@ function setTextFont() {
 }
 
 function setTextColor() {
-    this.ctx.fillStyle = this.temporal.c || this.vector.c
+    this.ctx.fillStyle = this.temporal.color || this.vector.color
 }

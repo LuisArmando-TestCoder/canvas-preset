@@ -70,7 +70,7 @@ function getLaidVectorSize(vector) {
 }
 
 function setLaidShape(sizeExists) {
-    const IsRotationNumber = () => !isNaN(this.vector.rot)
+    const IsRotationNumber = () => !isNaN(this.vector.rotation)
     const laidGroupExists = () => this.vector.laidGroup
     if (IsRotationNumber() && !sizeExists() && !laidGroupExists()) {
         this.vector.laidGroup = getLaidPoints(this.vector.group)
@@ -110,7 +110,7 @@ function repositionShapeToOriginalPosition(chosen) {
 function rotateShape() {
     this.ctx.rotate(
         getRotation(
-            this.temporal.rot || this.vector.rot
+            this.temporal.rotation || this.vector.rotation
         )
     )
 }
@@ -162,13 +162,13 @@ function setVectorInLine(chosenDot, methodName) {
 }
 
 function paintStroke() {
-    const canPaintStroke = this.temporal.w ||
-        this.vector.w &&
-        this.temporal.c ||
-        this.vector.c
+    const canPaintStroke = this.temporal.thickness ||
+        this.vector.thickness &&
+        this.temporal.color ||
+        this.vector.color
     if (canPaintStroke) {
-        this.ctx.lineWidth = this.temporal.w || this.vector.w
-        this.ctx.strokeStyle = this.temporal.c || this.vector.c
+        this.ctx.lineWidth = this.temporal.thickness || this.vector.thickness
+        this.ctx.strokeStyle = this.temporal.color || this.vector.color
         this.ctx.stroke()
     }
 }

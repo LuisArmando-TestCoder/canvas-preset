@@ -12,7 +12,7 @@ function drawArc() {
     this.ctx.arc(
         this.temporal.x || this.vector.x,
         this.temporal.y || this.vector.y,
-        this.temporal.r || this.vector.r,
+        this.temporal.radius || this.vector.radius,
         0,
         Math.PI * 2
     )
@@ -26,13 +26,13 @@ function getBorderKey(key) {
 }
 
 function setArcStroke() {
-    const color = getBorderKey.call(this, 'c')
-    const strokeWidth = getBorderKey.call(this, 'w')
+    const color = getBorderKey.call(this, 'color')
+    const strokeWidth = getBorderKey.call(this, 'thickness')
     this.ctx.strokeStyle = color
     this.ctx.lineWidth = strokeWidth
     this.ctx.stroke()
 }
 
 function setArcColor() {
-    this.ctx.fillStyle = this.temporal.c || this.vector.c
+    this.ctx.fillStyle = this.temporal.color || this.vector.color
 }

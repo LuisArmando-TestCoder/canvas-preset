@@ -12,14 +12,14 @@ export default function rect() {
 
 function setRectColor() {
     this.ctx.fillStyle = (
-        this.temporal.c || this.vector.c
+        this.temporal.color || this.vector.color
     )
 }
 
 function rotateRect() {
     this.ctx.rotate(
         getRotation(
-            this.temporal.rot || this.vector.rot
+            this.temporal.rotation || this.vector.rotation
         )
     )
 }
@@ -27,17 +27,17 @@ function rotateRect() {
 function offsetRectForRotation() {
     this.ctx.translate(
         (this.temporal.x || this.vector.x) +
-        (this.temporal.w || this.vector.w) / 2,
+        (this.temporal.width || this.vector.width) / 2,
         (this.temporal.y || this.vector.y) +
-        (this.temporal.h || this.vector.h) / 2
+        (this.temporal.height || this.vector.height) / 2
     )
 }
 
 function drawRect() {
     this.ctx.fillRect(
-        -(this.temporal.w || this.vector.w) / 2,
-        -(this.temporal.h || this.vector.h) / 2,
-        this.temporal.w || this.vector.w,
-        this.temporal.h || this.vector.h
+        -(this.temporal.width || this.vector.width) / 2,
+        -(this.temporal.height || this.vector.height) / 2,
+        this.temporal.width || this.vector.width,
+        this.temporal.height || this.vector.height
     )
 }

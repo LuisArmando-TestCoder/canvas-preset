@@ -8,12 +8,12 @@ export default function gradient() {
 
 function getGradient() {
     return this.ctx.createRadialGradient(
-        this.temporal.x || this.vector.x, // first circle x
-        this.temporal.y || this.vector.y, // first circle y
-        0,             // first circle radius
-        this.temporal.x || this.vector.x, // second circle x
-        this.temporal.y || this.vector.y, // second circle y
-        this.temporal.r || this.vector.r  // second circle radius
+        this.temporal.x || this.vector.x, 
+        this.temporal.y || this.vector.y, 
+        0,
+        this.temporal.x || this.vector.x, 
+        this.temporal.y || this.vector.y, 
+        this.temporal.radius || this.vector.radius  
     )
 }
 
