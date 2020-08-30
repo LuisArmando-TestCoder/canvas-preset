@@ -12,11 +12,12 @@ import React, {useEffect} from 'react'
 import preset from 'canvas-preset'
 export default () => {
   useEffect(
-    () =>
-      preset(({size, clear, draw}) => {
-        size()
-        draw(() => clear())
-      }),
+    () => {
+      const { size, clear, draw } = preset()
+      
+      size()
+      draw(() => clear('#f44'))
+    },
     []
   )
   return <canvas />
@@ -30,10 +31,14 @@ import preset from 'canvas-preset'
 export default {
   name: 'JustACircle',
   mounted () {
-    preset(({ render }) => {
-      const circle = {x: 73, y: 42, r: 12, c: '#000'}
-      render(circle).arc()
-    }, '#justACircle')
+    const { render } = preset(null, '#justACircle')
+    const circle = {
+      x: 73,
+      y: 42,
+      radius: 17,
+      color: '#001'
+    }
+    render(circle).arc()
   }
 }
 ```
