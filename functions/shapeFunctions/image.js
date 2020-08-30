@@ -1,6 +1,6 @@
 import getRotation from '../../utils/getRotation.js'
 
-export default function img() {
+export default function image() {
     this.ctx.save()
     offsetImage.call(this)
     setImageRotation.call(this)

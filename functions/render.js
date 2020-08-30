@@ -1,17 +1,17 @@
 import gradient from './shapeFunctions/gradient.js'
 import lines from './shapeFunctions/lines.js'
+import image from './shapeFunctions/image.js'
 import rect from './shapeFunctions/rect.js'
 import arc from './shapeFunctions/arc.js'
-import img from './shapeFunctions/img.js'
 import txt from './shapeFunctions/txt.js'
 
 export default function render(vector) {
     const shapeFunctions = {
         gradient,
         lines,
+        image,
         rect,
         arc,
-        img,
         txt
     }
     patchTemporalVector.call(this)
