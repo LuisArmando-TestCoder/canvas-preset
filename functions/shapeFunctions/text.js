@@ -1,4 +1,4 @@
-export default function txt() {
+export default function text() {
     this.ctx.beginPath()
     setTextColor.call(this)
     setTextFont.call(this)

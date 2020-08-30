@@ -2,8 +2,8 @@ import gradient from './shapeFunctions/gradient.js'
 import lines from './shapeFunctions/lines.js'
 import image from './shapeFunctions/image.js'
 import rect from './shapeFunctions/rect.js'
+import text from './shapeFunctions/text.js'
 import arc from './shapeFunctions/arc.js'
-import txt from './shapeFunctions/txt.js'
 
 export default function render(vector) {
     const shapeFunctions = {
@@ -11,8 +11,8 @@ export default function render(vector) {
         lines,
         image,
         rect,
+        text,
         arc,
-        txt
     }
     patchTemporalVector.call(this)
     Object.keys(shapeFunctions).forEach(key => {
