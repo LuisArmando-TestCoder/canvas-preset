@@ -35,7 +35,7 @@ export default {
     const circle = {
       x: 73,
       y: 42,
-      radius: 17,
+      radious: 17,
       color: '#001'
     }
     render(circle).arc()
