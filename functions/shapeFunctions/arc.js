@@ -12,7 +12,7 @@ function drawArc() {
     this.ctx.arc(
         this.temporal.x || this.vector.x,
         this.temporal.y || this.vector.y,
-        this.temporal.radious || this.vector.radious,
+        this.temporal.radius || this.vector.radius,
         0,
         Math.PI * 2
     )

@@ -13,7 +13,7 @@ function getGradient() {
         0,
         this.temporal.x || this.vector.x, 
         this.temporal.y || this.vector.y, 
-        this.temporal.radious || this.vector.radious  
+        this.temporal.radius || this.vector.radius  
     )
 }
 
