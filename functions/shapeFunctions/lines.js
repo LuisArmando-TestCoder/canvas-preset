@@ -70,10 +70,10 @@ function getLaidVectorSize(vector) {
 }
 
 function setLaidShape(sizeExists) {
-    const IsRotationNumber = () => !isNaN(this.vector.rotation)
+    const IsRotationNumber = () => !isNaN(this.temporal.rotation || this.vector.rotation)
     const laidGroupExists = () => this.vector.laidGroup
     if (IsRotationNumber() && !sizeExists() && !laidGroupExists()) {
-        this.vector.laidGroup = getLaidPoints(this.vector.group)
+        this.vector.laidGroup = getLaidPoints(this.temporal.group || this.vector.group)
         this.vector.size = getLaidVectorSize(this.vector)
     }
 }
