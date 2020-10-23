@@ -30,7 +30,7 @@ function setRectStroke(rectOffsets) {
                             this.vector.border &&
                             this.vector.border.thickness
     if (this.temporal.border || this.vector.border) {
-        ctx.strokeRect(...rectOffsets);
+        this.ctx.strokeRect(...rectOffsets);
     }
 }
 
