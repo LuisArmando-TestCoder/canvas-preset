@@ -6,8 +6,32 @@ export default function rect() {
     offsetRectForRotation.call(this)
     rotateRect.call(this)
     setRectColor.call(this)
-    drawRect.call(this)
+    const rectOffsets = getRectOffsets.call(this)
+    setRectStroke.call(this, rectOffsets)
+    drawRect.call(this, rectOffsets)
     this.ctx.restore()
+}
+
+function getRectOffsets() {
+    return [
+        -(this.temporal.width || this.vector.width) / 2,
+        -(this.temporal.height || this.vector.height) / 2,
+        this.temporal.width || this.vector.width,
+        this.temporal.height || this.vector.height
+    ]
+}
+
+function setRectStroke(rectOffsets) {
+    this.ctx.strokeStyle =  this.temporal.border && this.temporal.border.color ||
+                            this.vector.border &&
+                            this.vector.border.color
+    this.ctx.lineWidth =    this.temporal.border &&
+                            this.temporal.border.thickness ||
+                            this.vector.border &&
+                            this.vector.border.thickness
+    if (this.temporal.border || this.vector.border) {
+        ctx.strokeRect(...rectOffsets);
+    }
 }
 
 function setRectColor() {
@@ -33,11 +57,6 @@ function offsetRectForRotation() {
     )
 }
 
-function drawRect() {
-    this.ctx.fillRect(
-        -(this.temporal.width || this.vector.width) / 2,
-        -(this.temporal.height || this.vector.height) / 2,
-        this.temporal.width || this.vector.width,
-        this.temporal.height || this.vector.height
-    )
+function drawRect(rectOffsets) {
+    this.ctx.fillRect(...rectOffsets)
 }
