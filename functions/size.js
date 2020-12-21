@@ -1,10 +1,11 @@
 import upperFirst from '../utils/upperFirst.js'
 
-export default function size(props = {}) { // props -> { width,height }
-    if (!props.width) props.width = window.innerWidth
-    if (!props.height) props.height = window.innerHeight
+export default function size(props = {}) {
+    const dimensionKeys = ['width', 'height']
 
-    ['width', 'height'].forEach(key => {
+    dimensionKeys.forEach(key => {
+        if (!props[key]) props[key] = window[`inner${upperFirst(key)}`]
+
         const innerAxis = () => window[`inner${upperFirst(key)}`]
         let value = props[key]
 
