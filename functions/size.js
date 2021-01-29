@@ -9,9 +9,20 @@ export default function size(props = {}) {
         const innerAxis = () => window[`inner${upperFirst(key)}`]
         let value = props[key]
 
-        if (value === innerAxis())
+        if (value === innerAxis()) {
+            // If value is -> key: x
+            // ... and x == window[`inner${upperFirst(key)}`]
+            // ... then value = () => window[`inner${upperFirst(key)}`]
             value = innerAxis
-        else if (typeof value !== 'function') value = () => value
+        } else if (typeof value !== 'function') {
+            // If value is -> key: x
+            // ... and x != window[`inner${upperFirst(key)}`]
+            // ... then value = () => props[key]
+            value = () => props[key]
+        }
+
+        // If value is -> key: () => x
+        // ... and (() => x) != window[`inner${upperFirst(key)}`]
         this.c[key] = value()
 
         window.addEventListener('resize', () => this.c[key] = value())
