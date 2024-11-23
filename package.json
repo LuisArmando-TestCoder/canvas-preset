@@ -31,23 +31,27 @@
   "bugs": {
     "url": "https://github.com/LuisArmando-TestCoder/canvas-preset/issues"
   },
-  "bundleDependencies": false,
+  "bundleDependencies": [],
   "deprecated": false,
   "description": "canvas -> easier",
-  "devDependencies": {},
   "homepage": "https://github.com/LuisArmando-TestCoder/canvas-preset#readme",
   "keywords": [
     "canvas"
   ],
   "license": "MIT",
   "main": "index.js",
+  "type": "module",
   "name": "canvas-preset",
   "repository": {
     "url": "git+https://github.com/LuisArmando-TestCoder/canvas-preset.git"
   },
   "scripts": {
-    "lint": "eslint lib/index.js",
-    "release": "npm-github-release"
+    "lint": "eslint src/*.js",
+    "build": "vite build",
+    "release": "npm run build && npm-github-release"
   },
-  "version": "3.3.4"
+  "version": "3.3.4",
+  "dependencies": {
+    "vite": "^5.4.11"
+  }
 }
