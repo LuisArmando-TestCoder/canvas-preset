@@ -61,7 +61,7 @@
     "build": "vite build",
     "release": "npm run build && npm-github-release"
   },
-  "version": "3.3.6",
+  "version": "3.3.7",
   "dependencies": {
     "vite": "^5.4.11"
   }
