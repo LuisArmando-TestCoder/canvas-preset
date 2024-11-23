@@ -38,8 +38,20 @@
     "canvas"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/canvas-preset.umd.js",
+  "module": "dist/canvas-preset.es.js",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/canvas-preset.es.js",
+      "require": "./dist/canvas-preset.umd.js"
+    }
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
   "name": "canvas-preset",
   "repository": {
     "url": "git+https://github.com/LuisArmando-TestCoder/canvas-preset.git"
