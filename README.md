@@ -42,3 +42,31 @@ export default {
   }
 }
 ```
+
+## Usage for Svelte
+```svelte
+<script>
+  import { onMount } from "svelte"
+  import preset from "canvas-preset"
+
+  onMount(() => {
+    const { size, clear, draw, render } = preset()
+        
+        const circle = {
+          x: 73,
+          y: 42,
+          radius: 17,
+          color: '#001'
+        }
+      
+      size()
+      draw(() => {
+        clear('#f441')
+        circle.x++
+        render(circle).arc()
+      })
+  })
+</script>
+
+<canvas />
+```
